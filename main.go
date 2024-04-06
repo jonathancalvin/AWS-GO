@@ -15,6 +15,9 @@ func init() {
 func main() {
 	configs.DB.AutoMigrate(&database.Users{})
 	router := gin.New()
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"Code": 200, "Message": "Welcome to Tugas DCC RDS"})
+	})
 	router.GET("/user", func(c *gin.Context) {
 		var users []database.Users
 		result := configs.DB.Find(&users)
